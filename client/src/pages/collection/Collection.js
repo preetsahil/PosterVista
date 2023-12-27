@@ -14,8 +14,8 @@ function Collection() {
   },[params])
   const categoryList = [
     {
-      id: "comics",
-      value: "Comics",
+      id: "anime",
+      value: "Anime",
     },
     {
       id: "tv-shows",

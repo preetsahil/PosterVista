@@ -12,8 +12,8 @@ function Navbar() {
           <div className="nav-left">
             <ul className="link-group">
               <li className="hover-link">
-                <Link className="link" to="/products?category=comic">
-                  Comics
+                <Link className="link" to="/products?category=Anime">
+                  Anime
                 </Link>
               </li>
               <li className="hover-link">
