@@ -3,19 +3,43 @@ import "./Collection.scss";
 import Product from "../../components/product/Product";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { axiosClient } from "../../utils/axiosClient";
 
 function Collection() {
-  const navigate=useNavigate();
-  const params=useParams();
-  const [categoryId,setCategoryId]=useState('')
+  const navigate = useNavigate();
+  const params = useParams();
+  const [categoryId, setCategoryId] = useState("");
+  const [products, setProducts] = useState([]);
   const categories = useSelector((state) => state.categoryReducer.categories);
 
-  useEffect(()=>{
-    setCategoryId(params.categoryId)
-  },[params])
+  const sortOptions = [
+    {
+      value: "Price - Low To High",
+      sort: "price",
+    },
+    {
+      value: "Newest First",
+      sort: "createdAt",
+    },
+  ];
 
-  function updateCategory(e){
-    navigate(`/category/${e.target.value}`)
+  const [sortBy, setSortBy] = useState(sortOptions[0].sort);
+
+  async function fetchProducts() {
+    const url = params.categoryId
+      ? `/products?populate=image&filters[category][key][$eq]=${params.categoryId}&sort=${sortBy}`
+      : `/products?populate=image&sort=${sortBy}`;
+    const response = await axiosClient.get(url);
+    setProducts(response.data.data);
+  }
+
+  useEffect(() => {
+    setCategoryId(params.categoryId);
+    fetchProducts();
+  }, [params,sortBy]);
+
+  function updateCategory(e) {
+    navigate(`/category/${e.target.value}`);
   }
 
   return (
@@ -33,10 +57,17 @@ function Collection() {
           <div className="sort-by">
             <div className="sort-by-container">
               <h3 className="sort-by-text">Sort By</h3>
-              <select className="select-sort-by" name="sort-by" id="sort-by">
-                <option value="relavance">Relavance</option>
-                <option value="newest-first">Newest First</option>
-                <option value="price-lth">Price - Low To High</option>
+              <select
+                className="select-sort-by"
+                name="sort-by"
+                id="sort-by"
+                onChange={(e) => setSortBy(e.target.value)}
+              >
+                {sortOptions.map((item) => (
+                  <option key={item.sort} value={item.sort}>
+                    {item.value}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -53,20 +84,19 @@ function Collection() {
                     id={category.id}
                     value={category.attributes.key}
                     onChange={updateCategory}
-                    checked={category.attributes.key===categoryId}
+                    checked={category.attributes.key === categoryId}
                   />
-                  <label htmlFor={category.id}>{category.attributes.title}</label>
+                  <label htmlFor={category.id}>
+                    {category.attributes.title}
+                  </label>
                 </div>
               ))}
             </div>
           </div>
           <div className="products-box">
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
+            {products.map((product) => (
+              <Product key={product.id} product={product} />
+            ))}
           </div>
         </div>
       </div>
