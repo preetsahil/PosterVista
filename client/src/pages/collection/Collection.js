@@ -2,32 +2,17 @@ import React, { useEffect, useState } from "react";
 import "./Collection.scss";
 import Product from "../../components/product/Product";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Collection() {
   const navigate=useNavigate();
   const params=useParams();
   const [categoryId,setCategoryId]=useState('')
+  const categories = useSelector((state) => state.categoryReducer.categories);
 
   useEffect(()=>{
     setCategoryId(params.categoryId)
-    //api call
   },[params])
-  const categoryList = [
-    {
-      id: "anime",
-      value: "Anime",
-    },
-    {
-      id: "tv-shows",
-      value: "TV Shows",
-    },
-    {
-      id: "sports",
-      value: "Sports",
-    },
-  ];
-
-
 
   function updateCategory(e){
     navigate(`/category/${e.target.value}`)
@@ -60,17 +45,17 @@ function Collection() {
           <div className="filter-box">
             <div className="category-filter">
               <h3>Category</h3>
-              {categoryList.map((item) => (
-                <div key={item.id} className="filter-radio">
+              {categories?.map((category) => (
+                <div key={category.id} className="filter-radio">
                   <input
                     name="category"
                     type="radio"
-                    id={item.id}
-                    value={item.id}
+                    id={category.id}
+                    value={category.attributes.key}
                     onChange={updateCategory}
-                    checked={item.id===categoryId}
+                    checked={category.attributes.key===categoryId}
                   />
-                  <label htmlFor={item.id}>{item.value}</label>
+                  <label htmlFor={category.id}>{category.attributes.title}</label>
                 </div>
               ))}
             </div>

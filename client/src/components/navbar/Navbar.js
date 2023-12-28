@@ -1,31 +1,28 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {BsCart2} from "react-icons/bs"
-import "./Navbar.scss"
+import { BsCart2 } from "react-icons/bs";
+import "./Navbar.scss";
 import Cart from "../cart/Cart";
+import { useSelector } from "react-redux";
 function Navbar() {
-    const [openCart,setOpenCart]=useState(false)
+  const [openCart, setOpenCart] = useState(false);
+  const categories = useSelector((state) => state.categoryReducer.categories);
   return (
     <>
       <div className="Navbar">
         <div className="container nav-container">
           <div className="nav-left">
             <ul className="link-group">
-              <li className="hover-link">
-                <Link className="link" to="/category/anime">
-                  Anime
-                </Link>
-              </li>
-              <li className="hover-link">
-                <Link className="link" to="/category/tv-shows">
-                  TV Shows
-                </Link>
-              </li>
-              <li className="hover-link">
-                <Link className="link" to="/category/sports">
-                  Sports
-                </Link>
-              </li>
+              {categories?.map((category) => (
+                <li className="hover-link" key={category.id}>
+                  <Link
+                    className="link"
+                    to={`/category/${category.attributes.key}`}
+                  >
+                    {category.attributes.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="nav-center">
@@ -34,14 +31,14 @@ function Navbar() {
             </Link>
           </div>
           <div className="nav-right">
-            <div className="nav-cart" onClick={()=>setOpenCart(!openCart)}>
+            <div className="nav-cart" onClick={() => setOpenCart(!openCart)}>
               <BsCart2 className="icon" />
               <span className="cart-count center">99</span>
             </div>
           </div>
         </div>
       </div>
-      {openCart && <Cart onClose={()=>setOpenCart(false)} />}
+      {openCart && <Cart onClose={() => setOpenCart(false)} />}
     </>
   );
 }
