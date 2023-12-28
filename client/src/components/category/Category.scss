@@ -2,7 +2,7 @@
   width: 32%;
   aspect-ratio: 16/9;
   background-image: url("../../assets/poster.jpeg");
-  background-size: cover;
+  background-size:cover;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
@@ -15,6 +15,7 @@
 
     .heading {
         color: white;
+        font-weight: bolder;
     }
     &:hover{
     background-color: rgba(0, 0, 0, 0.5);
