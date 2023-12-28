@@ -1,36 +1,38 @@
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import "./CartItem.scss";
-import image from'../../assets/naruto.jpeg';
+import { useDispatch } from "react-redux";
+import { addToCart, removeFromCart, resetCart } from "../../redux/cartSlice";
 
-function CartItem() {
+function CartItem({cart}) {
+  const dispatch=useDispatch()
   return (
     <div className="CartItem">
       <div className="item-img">
-        <img src={image} alt="" />
+        <img src={cart.image} alt="" />
       </div>
       <div className="item-info-wrapper">
         <div className="item-info">
-          <p className="title">dkjBDK kjbjh </p>
-          <p className="price">₹ 349</p>
+          <p className="title">{cart.title}</p>
+          <p className="price">₹ {cart.price}</p>
           <div className="quantity-selector">
             <span
               className="btn decrement"
+              onClick={() => dispatch(removeFromCart(cart))}
             >
               -
             </span>
-            <span className="quantity">2</span>
+            <span className="quantity">{cart.quantity}</span>
             <span
               className="btn increment"
+              onClick={() => dispatch(addToCart(cart))}
             >
               +
             </span>
           </div>
-          <p className="total-price">
-            Subtotal: ₹45
-          </p>
+          <p className="total-price">Subtotal: ₹ {cart.quantity * cart.price}</p>
         </div>
-        <div className="item-remove">
+        <div className="item-remove" onClick={()=>dispatch(resetCart(cart))}>
           <AiOutlineClose />
         </div>
       </div>
