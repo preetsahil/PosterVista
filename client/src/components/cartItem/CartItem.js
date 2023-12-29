@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import "./CartItem.scss";
 import { useDispatch } from "react-redux";
-import { addToCart, removeFromCart, resetCart } from "../../redux/cartSlice";
+import { addToCart, removeFromCart, resetCartItem } from "../../redux/cartSlice";
 
 function CartItem({cart}) {
   const dispatch=useDispatch()
@@ -32,7 +32,7 @@ function CartItem({cart}) {
           </div>
           <p className="total-price">Subtotal: ₹ {cart.quantity * cart.price}</p>
         </div>
-        <div className="item-remove" onClick={()=>dispatch(resetCart(cart))}>
+        <div className="item-remove" onClick={()=>dispatch(resetCartItem(cart))}>
           <AiOutlineClose />
         </div>
       </div>

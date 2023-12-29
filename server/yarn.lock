@@ -1927,7 +1927,7 @@
   resolved "https://registry.npmjs.org/@types/minimatch/-/minimatch-5.1.2.tgz"
   integrity sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==
 
-"@types/node@*", "@types/node@>= 12", "@types/node@>= 14":
+"@types/node@*", "@types/node@>= 12", "@types/node@>= 14", "@types/node@>=8.1.0":
   version "20.10.5"
   resolved "https://registry.npmjs.org/@types/node/-/node-20.10.5.tgz"
   integrity sha512-nNPsNE65wjMxEKI93yOP+NPGGBJz/PoN3kZsVLee0XMiJolxSekEVD8wRwBUBqkwc7UWop0edW50yrCQW4CyRw==
@@ -7090,6 +7090,13 @@ qs@^6.10.3:
   dependencies:
     side-channel "^1.0.4"
 
+qs@^6.11.0, qs@6.11.1:
+  version "6.11.1"
+  resolved "https://registry.npmjs.org/qs/-/qs-6.11.1.tgz"
+  integrity sha512-0wsrzgTz/kAVIeuxSjnpGC56rzYtr6JT/2BwEvMaPhFIoYa1aGO8LbzuU1R0uUYQkLpWBTOj0l/CLAJB64J6nQ==
+  dependencies:
+    side-channel "^1.0.4"
+
 qs@^6.11.2:
   version "6.11.2"
   resolved "https://registry.npmjs.org/qs/-/qs-6.11.2.tgz"
@@ -7108,13 +7115,6 @@ qs@^6.9.6:
   version "6.11.2"
   resolved "https://registry.npmjs.org/qs/-/qs-6.11.2.tgz"
   integrity sha512-tDNIz22aBzCDxLtVH++VnTfzxlfeK5CbqohpSqpJgj1Wg/cQbStNAz3NuqCs5vV+pjBsK4x4pN9HlVh7rcYRiA==
-  dependencies:
-    side-channel "^1.0.4"
-
-qs@6.11.1:
-  version "6.11.1"
-  resolved "https://registry.npmjs.org/qs/-/qs-6.11.1.tgz"
-  integrity sha512-0wsrzgTz/kAVIeuxSjnpGC56rzYtr6JT/2BwEvMaPhFIoYa1aGO8LbzuU1R0uUYQkLpWBTOj0l/CLAJB64J6nQ==
   dependencies:
     side-channel "^1.0.4"
 
@@ -8301,6 +8301,14 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-2.0.1.tgz"
   integrity sha512-4gB8na07fecVVkOI6Rs4e7T6NOTki5EmL7TUduTs6bu3EdnSycntVJ4re8kgZA+wx9IueI2Y11bfbgwtzuE0KQ==
+
+stripe@^14.10.0:
+  version "14.10.0"
+  resolved "https://registry.npmjs.org/stripe/-/stripe-14.10.0.tgz"
+  integrity sha512-zI6yxYVFJtjibgb06Xn08KsJy1Zq+KE3jLkhZ8bJOTrxNVi2CtCreQdUn+NjXN5lTEdiNhxIqL0NmuSza+rOGw==
+  dependencies:
+    "@types/node" ">=8.1.0"
+    qs "^6.11.0"
 
 style-loader@3.3.1:
   version "3.3.1"

@@ -4,6 +4,8 @@ import CartItem from "../cartItem/CartItem";
 import { AiOutlineClose } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { BsCartX } from "react-icons/bs";
+import { loadStripe } from "@stripe/stripe-js";
+import { axiosClient } from "../../utils/axiosClient";
 
 function Cart({ onClose }) {
   const cart = useSelector((state) => state.cartReducer.cart);
@@ -13,6 +15,24 @@ function Cart({ onClose }) {
   });
 
   const isCartEmpty = cart.length === 0;
+    async function handleCheckout() {
+      try {
+        const response = await axiosClient.post("/orders", {
+          products: cart,
+        });
+
+        const stripe = await loadStripe(
+          `${process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}`
+        );
+        await stripe.redirectToCheckout({
+          sessionId: response.data.stripeId,
+        });
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  
   return (
     <div className="Cart">
       <div className="overlay" onClick={onClose}></div>
@@ -42,7 +62,9 @@ function Cart({ onClose }) {
               <h3 className="total-message">Total:</h3>
               <h3 className="total-value">₹ {totalAmount}</h3>
             </div>
-            <div className="checkout btn-primary">Checkout now</div>
+            <div className="checkout btn-primary" onClick={handleCheckout}>
+              Checkout now
+            </div>
           </div>
         )}
       </div>
