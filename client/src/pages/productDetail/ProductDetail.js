@@ -46,7 +46,7 @@ function ProductDetail() {
           </div>
           <div className="product-info">
             <h1 className="heading">{product?.attributes.title}</h1>
-            <h3 className="price">₹ {product?.attributes.price}</h3>
+            <h3 className="price">$ {product?.attributes.price}</h3>
             <p className="description">{product?.attributes.desc}</p>
             <div className="cart-options">
               <div className="quantity-selector">
@@ -70,6 +70,11 @@ function ProductDetail() {
               >
                 Add to Cart
               </button>
+              <div className="category">
+                <p>
+                  Category :{product?.attributes.category.data.attributes.title}{" "}
+                </p>
+              </div>
             </div>
 
             <div className="return-policy">

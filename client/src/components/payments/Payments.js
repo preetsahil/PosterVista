@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { BiErrorCircle } from "react-icons/bi";
 import "./Payments.scss";
@@ -10,6 +11,7 @@ function Payments() {
   const params = useParams();
   const status = params.status;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const infoData = {
     success: {
@@ -32,7 +34,9 @@ function Payments() {
     <div className="Payments">
       <div className="icon">{infoData[status].icon}</div>
       <h2 className="message">{infoData[status].message}</h2>
-      <button className="btn-primary">{infoData[status].cta}</button>
+      <button className="btn-primary" onClick={() => navigate("/")}>
+        {infoData[status].cta}
+      </button>
     </div>
   );
 }

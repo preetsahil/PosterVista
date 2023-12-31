@@ -14,7 +14,7 @@ function CartItem({cart}) {
       <div className="item-info-wrapper">
         <div className="item-info">
           <p className="title">{cart.title}</p>
-          <p className="price">₹ {cart.price}</p>
+          <p className="price">$ {cart.price}</p>
           <div className="quantity-selector">
             <span
               className="btn decrement"
@@ -30,9 +30,14 @@ function CartItem({cart}) {
               +
             </span>
           </div>
-          <p className="total-price">Subtotal: ₹ {cart.quantity * cart.price}</p>
+          <p className="total-price">
+            Subtotal: $ {cart.quantity * cart.price}
+          </p>
         </div>
-        <div className="item-remove" onClick={()=>dispatch(resetCartItem(cart))}>
+        <div
+          className="item-remove"
+          onClick={() => dispatch(resetCartItem(cart))}
+        >
           <AiOutlineClose />
         </div>
       </div>

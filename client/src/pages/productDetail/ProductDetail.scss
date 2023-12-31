@@ -57,6 +57,12 @@
         .add-to-cart {
           margin-top: 30px;
         }
+        .category {
+          margin-top: 10px;
+          p {
+            color: var(--primary-text-color);
+          }
+        }
       }
 
       .return-policy {
