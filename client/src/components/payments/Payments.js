@@ -7,6 +7,8 @@ import "./Payments.scss";
 import { useDispatch } from "react-redux";
 import { emptyCart } from "../../redux/cartSlice";
 
+
+
 function Payments() {
   const params = useParams();
   const status = params.status;

@@ -62,7 +62,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       );
 
       const session = await stripe.checkout.sessions.create({
-        shipping_address_collection: { allowed_countries: ["US","CA"] },
+        shipping_address_collection: { allowed_countries: ["US", "CA"] },
         payment_method_types: ["card"],
         mode: "payment",
         line_items: lineItems,

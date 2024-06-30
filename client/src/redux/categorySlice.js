@@ -13,8 +13,7 @@ export const fetchCategories = createAsyncThunk("api/categories", async () => {
 const categorySlice = createSlice({
   name: "categorySlice",
   initialState: {
-    categories: [],
-  },
+    categories: [],  },
   extraReducers:(builder)=>{
     builder.addCase(fetchCategories.fulfilled,(state,action)=>{
         state.categories=action.payload

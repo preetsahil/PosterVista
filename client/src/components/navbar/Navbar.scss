@@ -61,21 +61,17 @@
   }
 }
 
-
 @media screen and (max-width: 768px) {
-    .Navbar {
-        .nav-container {
+  .Navbar {
+    .nav-container {
+      .nav-left {
+        display: none;
+      }
 
-            .nav-left {
-                display: none;
-            }
-
-            .nav-center {
-                position: static;
-                transform: translateX(0);
-            }
-    
-        }
+      .nav-center {
+        position: static;
+        transform: translateX(0);
+      }
     }
-    
+  }
 }
